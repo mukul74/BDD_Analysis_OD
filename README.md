@@ -383,9 +383,9 @@ model.train(
 1. Trained the model for 50 epochs, with a batch size of 64, tried some augmentation to get a better model. These all are the default options available in the fucntion call.
 
 <p align="center">
-  <img src="train5/BoxF1_curve.png" alt="Label 1" width="200">
-  <img src="train5/BoxP_curve.png" alt="Label 2" width="200">
-  <img src="train5/BoxPR_curve.png" alt="Label 3" width="200">
+  <img src="train5/BoxF1_curve.png" alt="Label 1" width="400">
+  <img src="train5/BoxP_curve.png" alt="Label 2" width="400">
+  <img src="train5/BoxPR_curve.png" alt="Label 3" width="400">
 </p>
 <p align="center">
   <sub><b>F1_curve</b></sub>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -394,9 +394,9 @@ model.train(
 </p>
 
 <p align="center">
-  <img src="train5/BoxR_curve.png" alt="Label 4" width="200">
-  <img src="train5/confusion_matrix_normalized.png" alt="Label 5" width="200">
-  <img src="train5/confusion_matrix.png" alt="Label 6" width="200">
+  <img src="train5/BoxR_curve.png" alt="Label 4" width="400">
+  <img src="train5/confusion_matrix_normalized.png" alt="Label 5" width="400">
+  <img src="train5/confusion_matrix.png" alt="Label 6" width="400">
 </p>
 <p align="center">
   <sub><b>R_curve</b></sub>&nbsp;&nbsp;&nbsp;&nbsp;
