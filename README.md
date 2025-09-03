@@ -235,7 +235,7 @@ Saved CSV: `plots/summaries/bbox_statistics.csv`
 - Overall, both splits are well-balanced in bounding box characteristics.  
 
 
-## Bad Data Analysis
+## Bad Data/ Anomalies Analysis
 
 As part of quality checks, we identified **potentially bad bounding boxes** in both Train and Validation splits.  
 The following criteria were used to flag problematic annotations:
@@ -247,6 +247,39 @@ The following criteria were used to flag problematic annotations:
 - **Duplicate overlaps**: boxes of the same class with IoU > `overlap_iou_thresh`  
 
 This helps in identifying annotation noise that could negatively impact model training and evaluation.
+
+# Per-Class Bad BBox Summary
+
+| Category       | Reason                        | Count |
+|----------------|-------------------------------|-------|
+| bike           | duplicate_overlap             | 4     |
+| bike           | too_small,weird_aspect_ratio | 1     |
+| bike           | weird_aspect_ratio            | 2     |
+| bus            | too_small                     | 1     |
+| bus            | weird_aspect_ratio            | 4     |
+| car            | duplicate_overlap             | 54    |
+| car            | too_small                     | 30    |
+| car            | too_small,weird_aspect_ratio | 21    |
+| car            | weird_aspect_ratio            | 146   |
+| motor          | duplicate_overlap             | 2     |
+| person         | duplicate_overlap             | 2     |
+| person         | too_small                     | 7     |
+| person         | too_small,weird_aspect_ratio | 3     |
+| person         | weird_aspect_ratio            | 69    |
+| rider          | duplicate_overlap             | 2     |
+| rider          | too_small,weird_aspect_ratio | 1     |
+| rider          | weird_aspect_ratio            | 1     |
+| traffic light  | duplicate_overlap             | 8     |
+| traffic light  | too_small                     | 17    |
+| traffic light  | too_small,weird_aspect_ratio | 4     |
+| traffic light  | weird_aspect_ratio            | 27    |
+| traffic sign   | duplicate_overlap             | 10    |
+| traffic sign   | too_small                     | 7     |
+| traffic sign   | too_small,weird_aspect_ratio | 7     |
+| traffic sign   | weird_aspect_ratio            | 114   |
+| train          | weird_aspect_ratio            | 8     |
+| truck          | too_small                     | 2     |
+| truck          | weird_aspect_ratio            | 13    |
 
 ## Sample Visualizations
 <table>
