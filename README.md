@@ -53,9 +53,10 @@ The analysis covers dataset-level statistics, including:
 - **Truncation** levels  
 - **Number of objects per image**  
 
-No. of Images in the Train Folder:  
-- Train images: 69,863  
-- Validation images: 10,000  
+**No. of Images in the Train Folder:**  
+- **Train images:** 69,863  
+- **Validation images:** 10,000  
+
 
 ---
 
@@ -64,14 +65,24 @@ No. of Images in the Train Folder:
 Images showing different scenes with ground-truth bounding boxes:
 
 <p align="center">
-  <img src="plots/random_grids/train_grid.png" alt="Random Scenes Train" width="60%"><br>
+  <img src="plots/random_grids/train_grid.png" alt="Random Scenes Train" width="80%"><br>
   <sub>Training Set</sub>
 </p>
 
 <p align="center">
-  <img src="plots/random_grids/val_grid.png" alt="Random Scenes Validation" width="60%"><br>
+  <img src="plots/random_grids/val_grid.png" alt="Random Scenes Validation" width="80%"><br>
   <sub>Validation Set</sub>
 </p>
+
+### Comments / Analysis
+
+1. The grid of images shows a variety of scenarios in both the **Train** and **Validation** sets, including:  
+   - **Highway**  
+   - **Urban**  
+   - **Night**  
+   - **Snow**  
+   - **Vehicles**  
+   - **Traffic Lights**
 
 
 # Statistics 
@@ -189,7 +200,7 @@ Saved CSV: `plots/summaries/bbox_statistics.csv`
   </div>
 </div>
 
-## Comments
+## Comments/Analysis
 **Category Distribution Summary**  
 - The dataset is highly **imbalanced**, dominated by **cars** (≈55%), followed by **traffic signs** (≈19%) and **traffic lights** (≈14%).  
 - **Persons** form a moderate share (≈7%), while larger vehicles (**trucks, buses**) and two-wheelers (**bike, rider, motor**) collectively contribute <5%.  
@@ -308,6 +319,12 @@ This helps in identifying annotation noise that could negatively impact model tr
 ## Training & Fine-tuning the Model
 
 I used **YOLOv11n** for fine-tuning on the **BDD100K dataset**.  
+
+## YOLO11n Model Details
+
+| Model    | Input Size (pixels) | mAP<sub>50-95</sub> (%) | Speed CPU ONNX (ms) | Speed T4 TensorRT10 (ms) | Params (M) | FLOPs (B) |
+|----------|------------------|-------------------------|-------------------|--------------------------|------------|-----------|
+| YOLO11n  | 640              | 39.5                    | 56.1 ± 0.8        | 1.5 ± 0.0                | 2.6        | 6.5       |
 
 ### Why YOLOv11n?
 
