@@ -347,7 +347,6 @@ This helps in identifying annotation noise that could negatively impact model tr
 - Overall, both splits are well-balanced in bounding box characteristics.  
 
 **Bad Data Statistics Summary**
-**Bad BBox Summary**  
 - Most issues are in **cars** and **traffic signs**, mainly due to **weird aspect ratios** and **duplicate bounding boxes**.  
 - Other categories like **person, bike, traffic lights, bus, rider, motor, train, and truck** have smaller numbers of problematic boxes.  
 - Common problems include **duplicate overlaps**, **too small boxes**, and **weird aspect ratios**.  
