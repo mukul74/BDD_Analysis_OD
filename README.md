@@ -385,10 +385,17 @@ I used **BDD2YOLO.py** to convert the BDD100K annotations into YOLO format.
 - It saves each image’s **path**, **class labels**, and **bounding boxes** as ratios relative to image size.  
 - The output is easy to use with the **Ultralytics library** for training and inference.
 
+### Output Folders
+
+- `datasets\BDD\images\train` – Images from training dataset
+- `datasets\BDD\images\val` – Images from validation dataset
+- `datasets\BDD\label\train` – txt files containing the class no. and bounding box info
+- `datasets\BDD\label\val` – txt files containing the class no. and bounding box info 
+- `datasets\BDD\bdd.yaml` – metadata for yolo containing the class information and path for dataset.  
 
 ### 3.3 Training YOLOv11n on BDD100K
 
-We trained the **YOLOv11n** model using the Ultralytics library with the BDD dataset:
+I trained the **YOLOv11n** model using the Ultralytics library with the BDD dataset:
 
 ```python
 from ultralytics import YOLO
