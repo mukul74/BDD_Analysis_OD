@@ -6,7 +6,7 @@ This repository contains code and resources for analyzing the **BDD100K dataset*
 ---
 
 
-# 1. Data Analysis for Object Detection
+# 1. Data Analysis of BDD100K 
 
 ### To get the analysis via Docker Container
 <pre> docker pull mukulagarwal/data_analysis:latest  </pre>
@@ -14,7 +14,7 @@ This repository contains code and resources for analyzing the **BDD100K dataset*
 
 
 The analysis is based on the following dataset components:
-
+The fodler mentioned below, were downloaded from the provided link.
 ### Image Data
 - `bdd100k_images_100k/100k/train/`  
 - `bdd100k_images_100k/100k/val/`  
@@ -39,7 +39,9 @@ The following Python scripts are used in this analysis:
 - `plots/random_grids/` – Random images from **Train** and **Validation** sets with Ground Truth (GT) bounding boxes.  
 - `plots/summaries/` – CSV summaries generated from the above function calls.  
 - `plots/train/` – Plots generated during execution for the **training set**.  
-- `plots/val/` – Plots generated during execution for the **validation set**.  
+- `plots/val/` – Plots generated during execution for the **validation set**.
+- `BadData/train/` – Fodlers generated during execution for the **training set**, contains images with anamolies.
+- `BadData/val/` – Folders generated during execution for the **validation set**, contains images with anamolies.  
 ---
 
 ### Main Functionalities
@@ -50,8 +52,8 @@ The analysis covers dataset-level statistics, including:
 - **Weather** conditions  
 - **Time of day**  
 - **Category** frequencies  
-- **Occlusion** levels  
-- **Truncation** levels  
+- **Occlusion** frequencies  
+- **Truncation** frequencies  
 - **Number of objects per image**  
 
 **No. of Images in the Train Folder:**  
@@ -201,7 +203,7 @@ Saved CSV: `plots/summaries/bbox_statistics.csv`
   </div>
 </div>
 
-### 2.7 Bad Data/ Anomalies Analysis
+### 2.7 Bad Data/ Anomalies Statistics
 
 As part of quality checks, we identified **potentially bad bounding boxes** in both Train and Validation splits.  
 The following criteria were used to flag problematic annotations:
@@ -214,7 +216,7 @@ The following criteria were used to flag problematic annotations:
 
 This helps in identifying annotation noise that could negatively impact model training and evaluation.
 
-### Per-Class Bad BBox Summary
+### Per-Class Bad BBox Statistics
 
 | Category       | Reason                        | Count |
 |----------------|-------------------------------|-------|
@@ -345,6 +347,11 @@ This helps in identifying annotation noise that could negatively impact model tr
 - Overall, both splits are well-balanced in bounding box characteristics.  
 
 **Bad Data Statistics Summary**
+**Bad BBox Summary**  
+- Most issues are in **cars** and **traffic signs**, mainly due to **weird aspect ratios** and **duplicate bounding boxes**.  
+- Other categories like **person, bike, traffic lights, bus, rider, motor, train, and truck** have smaller numbers of problematic boxes.  
+- Common problems include **duplicate overlaps**, **too small boxes**, and **weird aspect ratios**.  
+- Overall, bounding box quality varies across categories, with cars and traffic signs being the most affected.
 
 
 
