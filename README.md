@@ -6,7 +6,7 @@ This repository contains code and resources for analyzing the **BDD100K dataset*
 ---
 
 
-## Data Analysis for Object Detection
+# 1. Data Analysis for Object Detection
 
 ### To get the analysis via Docker Container
 <pre> docker pull mukulagarwal/data_analysis:latest  </pre>
@@ -27,7 +27,7 @@ These metadata files provide object annotations (bounding boxes, categories, att
 
 ---
 
-## Codebase
+### Codebase
 
 The following Python scripts are used in this analysis:
 
@@ -42,7 +42,7 @@ The following Python scripts are used in this analysis:
 - `plots/val/` – Plots generated during execution for the **validation set**.  
 ---
 
-## Main Functionalities
+### Main Functionalities
 
 The analysis covers dataset-level statistics, including:
 
@@ -61,7 +61,7 @@ The analysis covers dataset-level statistics, including:
 
 ---
 
-## Example Visualizations
+### Example Visualizations
 
 Images showing different scenes with ground-truth bounding boxes:
 
@@ -86,8 +86,8 @@ Images showing different scenes with ground-truth bounding boxes:
    - **Traffic Lights**
 
 
-# Statistics 
-## Category Summary (Train vs Validation)
+# 2. Statistics 
+### 2.1 Category Summary (Train vs Validation)
 
 | Category      | Train Count | Val Count | Train % | Val % | Difference % |
 |---------------|-------------|-----------|---------|-------|--------------|
@@ -113,7 +113,7 @@ Saved CSV: `plots/summaries/category_summary.csv`
   </div>
 </div>
 
-## Weather Summary (Train vs Validation)
+### 2.2 Weather Summary (Train vs Validation)
 
 | Weather       | Train Count | Val Count | Train % | Val % | Difference % |
 |---------------|-------------|-----------|---------|-------|--------------|
@@ -136,7 +136,7 @@ Saved CSV: `plots/summaries/weather_summary.csv`
   </div>
 </div>
 
-## Scene Summary (Train vs Validation)
+### 2.3 Scene Summary (Train vs Validation)
 
 | Scene        | Train Count | Val Count | Train % | Val % | Difference % |
 |--------------|-------------|-----------|---------|-------|--------------|
@@ -160,7 +160,7 @@ Saved CSV: `plots/summaries/scene_summary.csv`
 </div>
 ---
 
-## Time of Day Summary (Train vs Validation)
+### 2.4 Time of Day Summary (Train vs Validation)
 
 | Time of Day | Train Count | Val Count | Train % | Val % | Difference % |
 |-------------|-------------|-----------|---------|-------|--------------|
@@ -180,7 +180,7 @@ Saved CSV: `plots/summaries/timeofday_summary.csv`
   </div>
 </div>
 
-## Bounding Box Statistics (Train vs Validation)
+### 2.5 Bounding Box Statistics (Train vs Validation)
 
 | Dataset | Width Mean | Width Median | Width Std | Height Mean | Height Median | Height Std | Aspect Ratio Mean | Aspect Ratio Median | Aspect Ratio Std | Area Mean  | Area Median | Area Std  |
 |---------|------------|--------------|-----------|-------------|---------------|------------|-------------------|---------------------|------------------|------------|-------------|-----------|
@@ -189,7 +189,7 @@ Saved CSV: `plots/summaries/timeofday_summary.csv`
 Saved CSV: `plots/summaries/bbox_statistics.csv`
 
 
-## Objects per image Statistics (Train vs Validation)
+### 2.6 Objects per image Statistics (Train vs Validation)
 
 <div style="display: flex; text-align: center;">
   <div>
@@ -201,41 +201,7 @@ Saved CSV: `plots/summaries/bbox_statistics.csv`
   </div>
 </div>
 
-## Comments/Analysis
-**Category Distribution Summary**  
-- The dataset is highly **imbalanced**, dominated by **cars** (≈55%), followed by **traffic signs** (≈19%) and **traffic lights** (≈14%).  
-- **Persons** form a moderate share (≈7%), while larger vehicles (**trucks, buses**) and two-wheelers (**bike, rider, motor**) collectively contribute <5%.  
-- **Trains** are extremely rare (<0.01%).  
-- Train and Validation splits are **well aligned**, with percentage differences across categories being **negligible (<0.2%)**, indicating balanced sampling.
-
-**Weather Distribution Summary**  
-- The majority of images are captured in **clear weather** (≈53%).  
-- Other common conditions include **overcast** (≈12%) and **undefined** weather labels (≈12%).  
-- **Snowy, rainy, and partly cloudy** conditions each contribute ~7–8%.  
-- **Foggy** scenes are extremely rare (<0.2%).  
-- Train and Validation splits are **well balanced**, with differences across weather conditions being **minimal (<0.4%)**.
-
-**Scene Distribution Summary**  
-- Most images are from **city streets** (≈62%) and **highways** (≈25%).  
-- **Residential areas** contribute around 12%.  
-- Rare scenes include **parking lots, tunnels, gas stations, and undefined locations** (<1% each).  
-- The Train and Validation splits are **well aligned**, with the largest difference being **city street (+1.17%)** and **residential (-0.97%)**.
-
-**Time of Day Distribution Summary**  
-- Majority of images are captured during **daytime (≈53%)**, followed by **night (≈40%)**.  
-- **Dawn/dusk** scenes account for ~7–8%.  
-- **Undefined cases** are negligible (<0.5%).  
-- Train and Validation splits are highly consistent, with the largest variation being **night images (+0.75% in train)**.
-
-**Bounding Box Statistics Summary**  
-- Average bounding box sizes are nearly identical between **Train** and **Validation**.  
-- **Width** averages around ~56 px and **Height** around ~50 px, with large standard deviations due to object size diversity.  
-- **Aspect ratio** is consistent (mean ≈ 1.22, median ≈ 1.1), indicating most objects are roughly square-ish.  
-- **Area** distribution shows a very small median (≈0.00088 of image area) compared to the mean, suggesting a few very large objects skew the average.  
-- Overall, both splits are well-balanced in bounding box characteristics.  
-
-
-## Bad Data/ Anomalies Analysis
+### 2.7 Bad Data/ Anomalies Analysis
 
 As part of quality checks, we identified **potentially bad bounding boxes** in both Train and Validation splits.  
 The following criteria were used to flag problematic annotations:
@@ -248,7 +214,7 @@ The following criteria were used to flag problematic annotations:
 
 This helps in identifying annotation noise that could negatively impact model training and evaluation.
 
-# Per-Class Bad BBox Summary
+### Per-Class Bad BBox Summary
 
 | Category       | Reason                        | Count |
 |----------------|-------------------------------|-------|
@@ -281,7 +247,7 @@ This helps in identifying annotation noise that could negatively impact model tr
 | truck          | too_small                     | 2     |
 | truck          | weird_aspect_ratio            | 13    |
 
-## Sample Visualizations
+### Sample Visualizations
 <table>
   <tr>
     <td>
@@ -345,16 +311,52 @@ This helps in identifying annotation noise that could negatively impact model tr
   </tr>
 </table>
 
+## Comments/Analysis
+**Category Distribution Summary**  
+- The dataset is highly **imbalanced**, dominated by **cars** (≈55%), followed by **traffic signs** (≈19%) and **traffic lights** (≈14%).  
+- **Persons** form a moderate share (≈7%), while larger vehicles (**trucks, buses**) and two-wheelers (**bike, rider, motor**) collectively contribute <5%.  
+- **Trains** are extremely rare (<0.01%).  
+- Train and Validation splits are **well aligned**, with percentage differences across categories being **negligible (<0.2%)**, indicating balanced sampling.
+
+**Weather Distribution Summary**  
+- The majority of images are captured in **clear weather** (≈53%).  
+- Other common conditions include **overcast** (≈12%) and **undefined** weather labels (≈12%).  
+- **Snowy, rainy, and partly cloudy** conditions each contribute ~7–8%.  
+- **Foggy** scenes are extremely rare (<0.2%).  
+- Train and Validation splits are **well balanced**, with differences across weather conditions being **minimal (<0.4%)**.
+
+**Scene Distribution Summary**  
+- Most images are from **city streets** (≈62%) and **highways** (≈25%).  
+- **Residential areas** contribute around 12%.  
+- Rare scenes include **parking lots, tunnels, gas stations, and undefined locations** (<1% each).  
+- The Train and Validation splits are **well aligned**, with the largest difference being **city street (+1.17%)** and **residential (-0.97%)**.
+
+**Time of Day Distribution Summary**  
+- Majority of images are captured during **daytime (≈53%)**, followed by **night (≈40%)**.  
+- **Dawn/dusk** scenes account for ~7–8%.  
+- **Undefined cases** are negligible (<0.5%).  
+- Train and Validation splits are highly consistent, with the largest variation being **night images (+0.75% in train)**.
+
+**Bounding Box Statistics Summary**  
+- Average bounding box sizes are nearly identical between **Train** and **Validation**.  
+- **Width** averages around ~56 px and **Height** around ~50 px, with large standard deviations due to object size diversity.  
+- **Aspect ratio** is consistent (mean ≈ 1.22, median ≈ 1.1), indicating most objects are roughly square-ish.  
+- **Area** distribution shows a very small median (≈0.00088 of image area) compared to the mean, suggesting a few very large objects skew the average.  
+- Overall, both splits are well-balanced in bounding box characteristics.  
+
+**Bad Data Statistics Summary**
 
 
 
 
 
-## Training & Fine-tuning the Model
+
+
+# 3. Training & Fine-tuning the Model
 
 I used **YOLOv11n** for fine-tuning on the **BDD100K dataset**.  
 
-## YOLO11n Model Details
+### 3.1 YOLO11n Model Details
 
 | Model    | Input Size (pixels) | mAP<sub>50-95</sub> (%) | Speed CPU ONNX (ms) | Speed T4 TensorRT10 (ms) | Params (M) | FLOPs (B) |
 |----------|------------------|-------------------------|-------------------|--------------------------|------------|-----------|
@@ -369,7 +371,7 @@ I used **YOLOv11n** for fine-tuning on the **BDD100K dataset**.
 - **Detects multiple classes at once** – perfect for complex street scenes.  
 - **Well-supported** – many tutorials, pretrained models, and community help available.
 
-## Converting BDD JSON Data to YOLO Format
+### 3.2 Converting BDD JSON Data to YOLO Format
 
 I used **BDD2YOLO.py** to convert the BDD100K annotations into YOLO format.  
 
@@ -378,7 +380,7 @@ I used **BDD2YOLO.py** to convert the BDD100K annotations into YOLO format.
 - The output is easy to use with the **Ultralytics library** for training and inference.
 
 
-## Training YOLOv11n on BDD100K
+### 3.3 Training YOLOv11n on BDD100K
 
 We trained the **YOLOv11n** model using the Ultralytics library with the BDD dataset:
 
@@ -465,7 +467,7 @@ model.train(
 5. **Train:** Often misclassified as **Bus, Traffic Sign,** or **Car**, likely due to very few training samples.  
 6. **Motor, Bike, and Rider:** High confusion among these three classes due to similar features and small sample sizes.
 
-# Detection Metrics by Class
+### Detection Metrics by Class
 | Class           | Images | Instances | Box(P) | R    | mAP50 | mAP50-95 |
 |-----------------|--------|-----------|--------|------|-------|----------|
 | **all**         | 10000  | 185,526   | 0.676  | 0.404| 0.445 | 0.248    |
@@ -495,7 +497,7 @@ The following Python scripts are used in this analysis:
   - `runs/compare_preds_gt/images/` – Contains saved images organized by scenario.  
   - `runs/compare_preds_gt/metrics_by_condition.csv` – CSV file containing **F1, Recall, Precision** for different scenario combinations.  
   - `runs/detect/val/` – Contains plots related to **Precision, Recall, and F1 Score**.
-# Model Evaluation on Validation Set Across Different Scenarios
+# 4. Model Evaluation on Validation Set Across Different Scenarios
 
 This analysis examines the model's performance under various **environmental scenarios**, defined as combinations of:
 
