@@ -64,12 +64,12 @@ No. of Images in the Train Folder:
 Images showing different scenes with ground-truth bounding boxes:
 
 <p align="center">
-  <img src="plots/random_grids/train_grid.png" alt="Random Scenes Train" width="30%"><br>
+  <img src="plots/random_grids/train_grid.png" alt="Random Scenes Train" width="60%"><br>
   <sub>Training Set</sub>
 </p>
 
 <p align="center">
-  <img src="plots/random_grids/val_grid.png" alt="Random Scenes Validation" width="30%"><br>
+  <img src="plots/random_grids/val_grid.png" alt="Random Scenes Validation" width="60%"><br>
   <sub>Validation Set</sub>
 </p>
 
