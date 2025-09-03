@@ -5,6 +5,7 @@ This repository contains code and resources for analyzing the **BDD100K dataset*
 
 ---
 
+
 ## Data Analysis for Object Detection
 
 ### To get the analysis via Docker Container
@@ -74,7 +75,7 @@ Images showing different scenes with ground-truth bounding boxes:
   <sub>Validation Set</sub>
 </p>
 
-### Comments / Analysis
+### Comments/Analysis
 
 1. The grid of images shows a variety of scenarios in both the **Train** and **Validation** sets, including:  
    - **Highway**  
@@ -403,7 +404,7 @@ model.train(
   <sub><b>Confusion Matrix</b></sub>
 </p>
 
-## Comments on Model Evaluation on Validation Data While Training
+## Comments/Analysis on Model Evaluation on Validation Data While Training
 
 ### F1 Curve Analysis
 - The F1 curve peaks at a threshold of **0.24**, achieving the highest F1 value of **0.47**.  
@@ -506,10 +507,11 @@ This dataset allows for detailed comparison and helps pinpoint conditions that r
   <sub><b>Snowy City_Street Night</b></sub>
 </p>
 
-## Comments
+## Comments/Analysis
 
 The images represent scenarios where **some samples fail to detect objects** in the frame.  
 
 - They provide an **overview of the variety of scenes** in the dataset.  
 - For each scenario, up to **50 images** have been saved for observation and analysis.  
+- Few objects are missed by the model as we can see in the **Snow Residential Night** or **Snow Highway Night** images.
 
