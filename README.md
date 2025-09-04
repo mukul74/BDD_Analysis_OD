@@ -108,7 +108,7 @@ Images showing different scenes with ground-truth bounding boxes:
 The grid of images highlights diverse driving scenarios sampled from both the Train and Validation sets, encompassing **highways**, **urban streets**, **nighttime** conditions, and adverse environments such as **snow**. Objects of interest, including **vehicles**, **pedestrians**, and **traffic lights**, are consistently annotated with bounding boxes across scenes of varying illumination, traffic density, and contextual complexity. This diversity reflects real-world heterogeneity, making the dataset highly valuable for evaluating the robustness and generalizability of object detection models in autonomous driving research.
 
 
-# 2. Statistics from BDD100K 
+# 2. Statistics from BDD100K DataAnalysis
 ### 2.1 Category Summary (Train vs Validation)
 
 | Category      | Train Count | Val Count | Train % | Val % | Difference % |
@@ -448,7 +448,24 @@ model.train(
   <sub><b>Training and Validation Loss Curves</b></sub>
 </p>
 
-1. Trained the model for 50 epochs, with a batch size of 64, tried some augmentation to get a better model. These all are the default options available in the fucntion call.
+## Training Setup
+- The model was trained for **50 epochs** with a **batch size of 64**.  
+- Basic **data augmentation** techniques were applied to improve robustness.  
+- All configurations used were based on the **default options** provided in the function call.  
+
+## Comments/Analysis on Model Training 
+
+### Loss Trends
+- **Box loss**, **classification loss**, and **distribution focal loss (DFL)** show a steady decline for both **training** and **validation**, reflecting effective convergence.  
+- No major signs of **overfitting**, as validation curves closely align with training curves.  
+
+### Performance Metrics
+- **Precision** and **recall** increase consistently over epochs, indicating better detection capability.  
+- **mAP@50** and **mAP@50–95** steadily improve without major fluctuations, confirming stronger localization and classification performance.  
+
+- The model demonstrates **stable convergence** with well-aligned training and validation trends.
+
+---
 
 <p align="center">
   <img src="train5/BoxF1_curve.png" alt="Label 1" width="400">
@@ -472,25 +489,48 @@ model.train(
   <sub><b>Confusion Matrix</b></sub>
 </p>
 
-## Comments/Analysis on Model Evaluation on Validation Data While Training
+## Comments/Analysis of Model Evaluation on Validation Data
 
 ### F1 Curve Analysis
 - The F1 curve peaks at a threshold of **0.24**, achieving the highest F1 value of **0.47**.  
 - This indicates the best balance between **Precision** and **Recall** for this model.  
 - The analysis helps identify the optimal threshold for class-wise performance.
 
+- Some classes (e.g., **car**) achieve higher peak F1 than others (e.g., **bike**, **motor**, **rider**). 
+
+- Indicates the model is more reliable for well-represented categories and weaker on smaller/rarer objects.  
+- Each class curve peaks at a different **confidence level**.
+- Hard-to-detect categories (e.g., **traffic light, rider, bike**) achieve lower peak F1, showing dataset/model weaknesses.
+
+
+
 ### Precision Curve Analysis
 - As expected, **lower thresholds** lead to **lower precision** due to more false positives, while **higher thresholds** improve precision.  
 - Observed trends align with expectations:  
-  - **Car** performs best, likely due to the higher number of samples.  
-  - **Train** detections are mostly missed by the model.  
-  - **Bike** and **Motor** show inconsistent precision across thresholds.  
-
+  - **Car, traffic sign, and person** classes consistently achieve higher precision across confidence levels.  
+  - **Train** represented as a verticle line near zero indicates model compltly misses it.  
+  - **Bike, rider, and motor** show lower precision, suggesting difficulty in detecting smaller or less-represented objects.  
+  - Stronger classes (e.g., **car, bus, truck**) remain consistently above weaker ones (e.g., **bike, rider, motor**).
+  - At very high thresholds (~0.9+), precision maxes out, but recall drops sharply. 
 ### Recall Curve Analysis
 - Recall behaves inversely to precision: **lower thresholds** produce **higher recall** due to more weak detections, whereas **higher thresholds** reduce recall.  
 - Observed trends:  
   - **Car, Truck, and Bus** achieve the highest recall, possibly because of more samples and larger bounding boxes.  
   - **Bike, Rider, and Motor** have lower recall due to fewer samples and smaller bounding boxes.
+  - At confidence = 0, recall starts at its maximum (~0.64 for all classes) but with poor precision
+
+### Precision Recall Curve Analysis
+- The mean Average Precision (mAP@0.5) across all classes is 0.445, indicating moderate detection performance.
+
+- Precision decreases as recall increases, reflecting the expected trade-off: capturing more objects (high recall) comes at the cost of introducing more false positives (lower precision).
+
+- **Car** (0.736) achieves the best performance, with high precision across a wide recall range → model detects cars reliably.
+
+- **Train** (0.000) → model failed to learn this class (no reliable detections)
+
+- **Truck** (0.558), **bus** (0.539), **traffic** sign (0.551), **person** (0.517) show moderate performance decent detection but with noticeable precision drop at higher recall.
+
+- **Bike** (0.352), **rider** (0.352), **motor** (0.341) struggle significant precision drop as recall increases, likely due to small object size and class imbalance.
 
 ### Normalized Confusion Matrix Analysis
 1. **Car:** Detected correctly **69%** of the time; remaining predictions are labeled as **Background**.  
