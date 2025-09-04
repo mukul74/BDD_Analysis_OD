@@ -121,17 +121,21 @@ def save_random_images(
 
 def generate_stats(dataset, excluded_categories):
     """
-        Compute counts of objects, scenes, weather, and time of day.
+    Compute counts of objects, scenes, weather, and time of day.
 
-        Args:
-            data (list of dict): Dataset annotations (train or val) and exculded categories
+    Args:
+        data (list of dict): Dataset annotations (train or val) and exculded categories
 
-        Returns:
-            dict: Counters for objects, scenes, weather, time of day etc.
+    Returns:
+        dict: Counters for objects, scenes, weather, time of day etc.
     """
     objects_per_image = []
     weather_counter, scene_counter, timeofday_counter = Counter(), Counter(), Counter()
-    category_counter, occluded_counter, truncated_counter = Counter(), Counter(), Counter()
+    category_counter, occluded_counter, truncated_counter = (
+        Counter(),
+        Counter(),
+        Counter(),
+    )
 
     for entry in tqdm(dataset, desc="Processing dataset"):
         valid_object_count = 0
@@ -284,6 +288,7 @@ def ensure_dir(folder):
     if not os.path.exists(folder):
         os.makedirs(folder)
 
+
 # your original function (unchanged)
 # def generate_category_summary(
 #     train_stats, val_stats, excluded_categories, summary_folder="plots/summaries"
@@ -320,8 +325,9 @@ def ensure_dir(folder):
 #     print("\n=== Category Summary (Train vs Val) ===")
 #     print(tabulate(df, headers="keys", tablefmt="fancy_grid", showindex=False))
 #     print(f"\nSaved CSV to {save_path}")
-    
+
 #     return df  # return DataFrame for Gradio
+
 
 def generate_attribute_summary(
     train_stats,
@@ -414,10 +420,8 @@ def generate_bbox_summary(train_bboxes, val_bboxes, summary_folder="plots/summar
 
 
 def run_dataset_analysis(name, dataset, img_root, excluded, out_folder):
-    """
+    """ """
 
-    """
-    
     print(f"\n--- {name} Data Analysis ---")
     stats = generate_stats(dataset, excluded)
 
@@ -462,12 +466,13 @@ def run_dataset_analysis(name, dataset, img_root, excluded, out_folder):
     save_bbox_analysis(
         widths, heights, aspect_ratios, areas, cat_sizes, prefix=name, folder=out_folder
     )
-    return stats,(widths, heights, aspect_ratios, areas)
+    return stats, (widths, heights, aspect_ratios, areas)
 
 
 # ========================
 # Find Anomolies
 # ========================
+
 
 def visualize_bad_bboxes(bad_df, img_dir, out_dir, num_samples=100):
     """

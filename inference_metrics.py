@@ -1,5 +1,5 @@
 from ultralytics import YOLO
-from tabulate import tabulate  
+from tabulate import tabulate
 
 # Load your trained model
 model = YOLO("best.pt")

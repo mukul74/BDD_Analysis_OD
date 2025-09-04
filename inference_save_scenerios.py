@@ -15,8 +15,8 @@ IMG_DIR = r"datasets/BDD/images/val"
 LABEL_DIR = r"datasets/BDD/labels/val"
 META_JSON = r"bdd100k_labels_release/bdd100k_labels_images_val.json"
 OUTPUT_DIR = r"runs/compare_preds_gt"
-CONF_THRESH = 0.25   # inference confidence threshold for model
-IOU_MATCH = 0.5      # IoU threshold to call a detection TP
+CONF_THRESH = 0.25  # inference confidence threshold for model
+IOU_MATCH = 0.5  # IoU threshold to call a detection TP
 MAX_SAVE_PER_BUCKET = 50
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -27,7 +27,8 @@ class_names = model.names
 
 # Colors
 PRED_COLOR = (0, 255, 0)  # green
-GT_COLOR = (0, 0, 255)    # red
+GT_COLOR = (0, 0, 255)  # red
+
 
 # --------------------
 # Helpers
@@ -57,8 +58,10 @@ def iou_xyxy(box_a, box_b):
         return 0.0
     return inter_area / union
 
+
 def sanitize_folder_name(s):
     return str(s).replace(" ", "_").replace("/", "_")
+
 
 # --------------------
 # Load metadata
@@ -80,7 +83,9 @@ for entry in meta_data:
 # Storage for detection metrics
 # --------------------
 # Per-bucket: tp, fp, fn, total_gt, saved_images_count
-metrics_data = defaultdict(lambda: {"tp": 0, "fp": 0, "fn": 0, "total_gt": 0, "saved": 0, "n_images": 0})
+metrics_data = defaultdict(
+    lambda: {"tp": 0, "fp": 0, "fn": 0, "total_gt": 0, "saved": 0, "n_images": 0}
+)
 
 # --------------------
 # Process images
@@ -109,11 +114,23 @@ for img_path in tqdm(image_paths, desc="Processing", unit="img"):
         except Exception:
             # fallback if attributes have slightly different names/types
             # convert to numpy via list comprehensions
-            preds_xyxy = np.array([b.xyxy[0].cpu().numpy() for b in res.boxes]) if len(res.boxes)>0 else np.zeros((0,4))
-            pred_cls = np.array([int(b.cls) for b in res.boxes]) if len(res.boxes)>0 else np.array([], dtype=int)
-            pred_conf = np.array([float(b.conf) for b in res.boxes]) if len(res.boxes)>0 else np.array([])
+            preds_xyxy = (
+                np.array([b.xyxy[0].cpu().numpy() for b in res.boxes])
+                if len(res.boxes) > 0
+                else np.zeros((0, 4))
+            )
+            pred_cls = (
+                np.array([int(b.cls) for b in res.boxes])
+                if len(res.boxes) > 0
+                else np.array([], dtype=int)
+            )
+            pred_conf = (
+                np.array([float(b.conf) for b in res.boxes])
+                if len(res.boxes) > 0
+                else np.array([])
+            )
     else:
-        preds_xyxy = np.zeros((0,4))
+        preds_xyxy = np.zeros((0, 4))
         pred_cls = np.array([], dtype=int)
         pred_conf = np.array([])
 
@@ -133,18 +150,27 @@ for img_path in tqdm(image_paths, desc="Processing", unit="img"):
                 x2 = int((cx + bw / 2) * w)
                 y2 = int((cy + bh / 2) * h)
                 # clamp
-                x1, y1, x2, y2 = map(int, [max(0,x1), max(0,y1), min(w-1,x2), min(h-1,y2)])
+                x1, y1, x2, y2 = map(
+                    int, [max(0, x1), max(0, y1), min(w - 1, x2), min(h - 1, y2)]
+                )
                 gt_boxes.append([x1, y1, x2, y2, cls])
 
     # Prepare preds list (x1,y1,x2,y2,cls,conf)
     preds = []
     for (x1, y1, x2, y2), cls, conf in zip(preds_xyxy, pred_cls, pred_conf):
         # ensure ints for drawing and limits
-        x1i, y1i, x2i, y2i = int(round(x1)), int(round(y1)), int(round(x2)), int(round(y2))
+        x1i, y1i, x2i, y2i = (
+            int(round(x1)),
+            int(round(y1)),
+            int(round(x2)),
+            int(round(y2)),
+        )
         preds.append([x1i, y1i, x2i, y2i, int(cls), float(conf)])
 
     # Get metadata bucket key
-    meta = meta_lookup.get(base, {"weather": "unknown", "scene": "unknown", "timeofday": "unknown"})
+    meta = meta_lookup.get(
+        base, {"weather": "unknown", "scene": "unknown", "timeofday": "unknown"}
+    )
     key = (meta["weather"], meta["scene"], meta["timeofday"])
     bucket = metrics_data[key]
     bucket["n_images"] += 1
@@ -188,19 +214,41 @@ for img_path in tqdm(image_paths, desc="Processing", unit="img"):
 
     # Draw predictions and GT (same style as your base code)
     # Draw preds
-    for (x1, y1, x2, y2, cls, conf) in preds:
+    for x1, y1, x2, y2, cls, conf in preds:
         cv2.rectangle(img, (x1, y1), (x2, y2), PRED_COLOR, 2)
-        cv2.putText(img, f"P:{class_names.get(cls,cls)} {conf:.2f}", (x1, max(0,y1-6)),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.45, PRED_COLOR, 1, cv2.LINE_AA)
+        cv2.putText(
+            img,
+            f"P:{class_names.get(cls,cls)} {conf:.2f}",
+            (x1, max(0, y1 - 6)),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.45,
+            PRED_COLOR,
+            1,
+            cv2.LINE_AA,
+        )
     # Draw GT
-    for (x1, y1, x2, y2, cls) in gt_boxes:
+    for x1, y1, x2, y2, cls in gt_boxes:
         cv2.rectangle(img, (x1, y1), (x2, y2), GT_COLOR, 2)
-        cv2.putText(img, f"GT:{class_names.get(cls,cls)}", (x1, max(0,y1-6)),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.45, GT_COLOR, 1, cv2.LINE_AA)
+        cv2.putText(
+            img,
+            f"GT:{class_names.get(cls,cls)}",
+            (x1, max(0, y1 - 6)),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.45,
+            GT_COLOR,
+            1,
+            cv2.LINE_AA,
+        )
 
     # Save annotated image only up to MAX_SAVE_PER_BUCKET
     if bucket["saved"] < MAX_SAVE_PER_BUCKET:
-        safe_dir = os.path.join(OUTPUT_DIR, "images", sanitize_folder_name(f"{meta['weather']}_{meta['scene']}_{meta['timeofday']}"))
+        safe_dir = os.path.join(
+            OUTPUT_DIR,
+            "images",
+            sanitize_folder_name(
+                f"{meta['weather']}_{meta['scene']}_{meta['timeofday']}"
+            ),
+        )
         os.makedirs(safe_dir, exist_ok=True)
         cv2.imwrite(os.path.join(safe_dir, base + ".jpg"), img)
         bucket["saved"] += 1
@@ -210,7 +258,9 @@ for img_path in tqdm(image_paths, desc="Processing", unit="img"):
 # --------------------
 csv_file = os.path.join(OUTPUT_DIR, "metrics_by_condition.csv")
 with open(csv_file, "w") as f:
-    f.write("weather,scene,time,precision,recall,f1,tp,fp,fn,total_gt,n_images,saved_images\n")
+    f.write(
+        "weather,scene,time,precision,recall,f1,tp,fp,fn,total_gt,n_images,saved_images\n"
+    )
     for key, vals in metrics_data.items():
         w, sc, t = key
         tp = vals["tp"]
@@ -222,7 +272,11 @@ with open(csv_file, "w") as f:
         prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0
         rec = tp / (tp + fn) if (tp + fn) > 0 else 0.0
         f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0
-        f.write(f"{w},{sc},{t},{prec:.4f},{rec:.4f},{f1:.4f},{tp},{fp},{fn},{total_gt},{n_images},{saved}\n")
+        f.write(
+            f"{w},{sc},{t},{prec:.4f},{rec:.4f},{f1:.4f},{tp},{fp},{fn},{total_gt},{n_images},{saved}\n"
+        )
 
-print(f"✅ Saved annotated images (<= {MAX_SAVE_PER_BUCKET} per bucket) to: {os.path.join(OUTPUT_DIR,'images')}")
+print(
+    f"✅ Saved annotated images (<= {MAX_SAVE_PER_BUCKET} per bucket) to: {os.path.join(OUTPUT_DIR,'images')}"
+)
 print(f"✅ Metrics CSV: {csv_file}")
