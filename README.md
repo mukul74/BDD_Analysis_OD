@@ -53,7 +53,7 @@ utilities.py will be called inside the DataAnalysis.py
 - `BadData/val/` – Folders generated during execution for the **validation set**, contains images with anamolies.  
 ---
 
-### Main Functionalities
+### Main Criterias
 
 The analysis covers dataset-level statistics, including:
 
