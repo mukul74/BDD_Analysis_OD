@@ -108,7 +108,7 @@ Images showing different scenes with ground-truth bounding boxes:
 The grid of images highlights diverse driving scenarios sampled from both the Train and Validation sets, encompassing **highways**, **urban streets**, **nighttime** conditions, and adverse environments such as **snow**. Objects of interest, including **vehicles**, **pedestrians**, and **traffic lights**, are consistently annotated with bounding boxes across scenes of varying illumination, traffic density, and contextual complexity. This diversity reflects real-world heterogeneity, making the dataset highly valuable for evaluating the robustness and generalizability of object detection models in autonomous driving research.
 
 
-# 2. Statistics 
+# 2. Statistics from BDD100K 
 ### 2.1 Category Summary (Train vs Validation)
 
 | Category      | Train Count | Val Count | Train % | Val % | Difference % |
