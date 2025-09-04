@@ -37,9 +37,9 @@ The following Python scripts are used in this data analysis:
 - `DataAnalysis.py` – main script for reading and analyzing the dataset.  
 - `utilities.py` – helper functions for data parsing and statistics extraction.  
 
-<pre> 
-##Setup Virtual Environment
+## Setup Virtual Environment
 
+```python
 # Create virtual environment
 python -m venv venv
 
@@ -49,14 +49,17 @@ source venv/bin/activate
 # On Windows (PowerShell):
 venv\Scripts\Activate
 
-# Install dependencies
+# Install dependencies for DataAnalysis section
+pip install -r requirements.txt
+
+# Install dependencies for other codes such as inference and training
 pip install -r requirements_2.txt
 
+# Run DataAnalysis
 python DataAnalysis.py
-'''
-utilities.py will be called inside the DataAnalysis.py
-'''
-</pre>
+
+# Note:
+# utilities.py will be called inside the DataAnalysis.py
 
 ### Output Folders
 
@@ -465,6 +468,33 @@ model.train(
 
 - The model demonstrates **stable convergence** with well-aligned training and validation trends.
 
+## Evalaution Metrics
+
+### CodeBase
+# Run YOLO Inference & Evaluation Scripts
+
+```bash
+# 1. Compute inference metrics
+python inference_metrics.py
+
+# 2. Save all images with GT + Pred bounding boxes
+python inference_save_all.py
+
+# 3. Save up to 50 images per scenario (GT + Pred)
+python inference_save_scenarios.py
+```
+The following Python scripts are used in this analysis:
+
+- `inference_metrics.py` – Computes inference and evaluation metrics on the validation dataset.  
+- `inference_save_all.py` – Saves all images regardless of the scene, including Ground Truth (GT) and Predicted (Pred) bounding boxes.  
+- `inference_save_scenarios.py` – Saves up to 50 images per scenario combination, with GT and Pred bounding boxes. A few sample images are shown below.  
+
+### Output Folders
+
+- `runs/`
+  - `runs/compare_preds_gt/images/` – Contains saved images organized by scenario.  
+  - `runs/compare_preds_gt/metrics_by_condition.csv` – CSV file containing **F1, Recall, Precision** for different scenario combinations.  
+  - `runs/detect/val/` – Contains plots related to **Precision, Recall, and F1 Score**.
 ---
 
 <p align="center">
@@ -558,18 +588,7 @@ model.train(
 
 ## Codebase
 
-The following Python scripts are used in this analysis:
 
-- `inference_metrics.py` – Computes inference and evaluation metrics on the validation dataset.  
-- `inference_save_all.py` – Saves all images regardless of the scene, including Ground Truth (GT) and Predicted (Pred) bounding boxes.  
-- `inference_save_scenarios.py` – Saves up to 50 images per scenario combination, with GT and Pred bounding boxes. A few sample images are shown below.  
-
-### Output Folders
-
-- `runs/`
-  - `runs/compare_preds_gt/images/` – Contains saved images organized by scenario.  
-  - `runs/compare_preds_gt/metrics_by_condition.csv` – CSV file containing **F1, Recall, Precision** for different scenario combinations.  
-  - `runs/detect/val/` – Contains plots related to **Precision, Recall, and F1 Score**.
 # 4. Model Evaluation on Validation Set Across Different Scenarios
 
 Apart from the object detections overview, I tried to look for scenes where the detections failed or what were combinations, what models was looking in to. For example Snow+Night+Highway, could be a possible scenerio, with less detections.
