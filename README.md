@@ -596,9 +596,9 @@ A CSV file has been prepared that collects metrics for all scenarios, including:
 This dataset allows for detailed comparison and helps pinpoint conditions that require improvement.
 
 <p align="center">
-  <img src="runs\compare_preds_gt\images\snowy_highway_night\b4ef573f-a98f72d3.jpg" alt="Label 1" width="200">
-  <img src="runs\compare_preds_gt\images\snowy_residential_night\b82f7901-6d67cfe8.jpg" alt="Label 2" width="200">
-  <img src="runs\compare_preds_gt\images\rainy_highway_night\b27fdbad-ab895d86.jpg" alt="Label 3" width="200">
+  <img src="runs\compare_preds_gt\images\snowy_highway_night\b4ef573f-a98f72d3.jpg" alt="Label 1" width="400">
+  <img src="runs\compare_preds_gt\images\snowy_residential_night\b82f7901-6d67cfe8.jpg" alt="Label 2" width="400">
+  <img src="runs\compare_preds_gt\images\rainy_highway_night\b27fdbad-ab895d86.jpg" alt="Label 3" width="400">
 </p>
 <p align="center">
   <sub><b>Snow Highway Night</b></sub>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -607,9 +607,9 @@ This dataset allows for detailed comparison and helps pinpoint conditions that r
 </p>
 
 <p align="center">
-  <img src="runs\compare_preds_gt\images\clear_parking_lot_night\c20db6e7-6613883a.jpg" alt="Label 4" width="200">
-  <img src="runs\compare_preds_gt\images\foggy_city_street_night\c7f97365-5be70930.jpg" alt="Label 5" width="200">
-  <img src="runs\compare_preds_gt\images\snowy_city_street_night\b3a72605-98b37492.jpg" alt="Label 6" width="200">
+  <img src="runs\compare_preds_gt\images\clear_parking_lot_night\c20db6e7-6613883a.jpg" alt="Label 4" width="400">
+  <img src="runs\compare_preds_gt\images\foggy_city_street_night\c7f97365-5be70930.jpg" alt="Label 5" width="400">
+  <img src="runs\compare_preds_gt\images\snowy_city_street_night\b3a72605-98b37492.jpg" alt="Label 6" width="400">
 </p>
 <p align="center">
   <sub><b>Clear Parking_Lot Night</b></sub>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -619,11 +619,11 @@ This dataset allows for detailed comparison and helps pinpoint conditions that r
 
 <p float="left" align="center">
   <figure>
-    <img src="runs\compare_preds_gt\BarPLot.png" width="45%" />
+    <img src="runs\compare_preds_gt\BarPLot.png" width="60%" />
     <figcaption>Variation of Precision Recall and F1 across most occuring scenerios</figcaption>
   </figure>
   <figure>
-    <img src="runs\compare_preds_gt\BarPlot_2.png" width="45%" />
+    <img src="runs\compare_preds_gt\BarPlot_2.png" width="60%" />
     <figcaption>No. of images across most occuring scenerios</figcaption>
   </figure>
 </p>
