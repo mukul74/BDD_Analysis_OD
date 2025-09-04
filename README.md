@@ -506,18 +506,18 @@ model.train(
 
 ### Precision Curve Analysis
 - As expected, **lower thresholds** lead to **lower precision** due to more false positives, while **higher thresholds** improve precision.  
-- Observed trends align with expectations:  
-  - **Car, traffic sign, and person** classes consistently achieve higher precision across confidence levels.  
-  - **Train** represented as a verticle line near zero indicates model compltly misses it.  
-  - **Bike, rider, and motor** show lower precision, suggesting difficulty in detecting smaller or less-represented objects.  
-  - Stronger classes (e.g., **car, bus, truck**) remain consistently above weaker ones (e.g., **bike, rider, motor**).
-  - At very high thresholds (~0.9+), precision maxes out, but recall drops sharply. 
+ 
+- **Car, traffic sign, and person** classes consistently achieve higher precision across confidence levels.  
+- **Train** represented as a verticle line near zero indicates model compltly misses it.  
+- **Bike, rider, and motor** show lower precision, suggesting difficulty in detecting smaller or less-represented objects.  
+- Stronger classes (e.g., **car, bus, truck**) remain consistently above weaker ones (e.g., **bike, rider, motor**).
+- At very high thresholds (~0.9+), precision maxes out, but recall drops sharply. 
 ### Recall Curve Analysis
 - Recall behaves inversely to precision: **lower thresholds** produce **higher recall** due to more weak detections, whereas **higher thresholds** reduce recall.  
-- Observed trends:  
-  - **Car, Truck, and Bus** achieve the highest recall, possibly because of more samples and larger bounding boxes.  
-  - **Bike, Rider, and Motor** have lower recall due to fewer samples and smaller bounding boxes.
-  - At confidence = 0, recall starts at its maximum (~0.64 for all classes) but with poor precision
+  
+- **Car, Truck, and Bus** achieve the highest recall, possibly because of more samples and larger bounding boxes.  
+- **Bike, Rider, and Motor** have lower recall due to fewer samples and smaller bounding boxes.
+- At confidence = 0, recall starts at its maximum (~0.64 for all classes) but with poor precision
 
 ### Precision Recall Curve Analysis
 - The mean Average Precision (mAP@0.5) across all classes is 0.445, indicating moderate detection performance.
@@ -533,12 +533,12 @@ model.train(
 - **Bike** (0.352), **rider** (0.352), **motor** (0.341) struggle significant precision drop as recall increases, likely due to small object size and class imbalance.
 
 ### Normalized Confusion Matrix Analysis
-1. **Car:** Detected correctly **69%** of the time; remaining predictions are labeled as **Background**.  
-2. **Traffic Sign:** Correctly predicted **49%** of the time; a small fraction misclassified as other classes.  
-3. **Rider and Motor:** Low detection rates; **Train** is completely missed.  
-4. **Truck, Bus, Bike, Rider, and Motor:** Frequently misclassified as **Car**.  
-5. **Train:** Often misclassified as **Bus, Traffic Sign,** or **Car**, likely due to very few training samples.  
-6. **Motor, Bike, and Rider:** High confusion among these three classes due to similar features and small sample sizes.
+- **Car:** Detected correctly **69%** of the time; remaining predictions are labeled as **Background**.  
+- **Traffic Sign:** Correctly predicted **49%** of the time; a small fraction misclassified as other classes.  
+- **Rider and Motor:** Low detection rates; **Train** is completely missed.  
+- **Truck, Bus, Bike, Rider, and Motor:** Frequently misclassified as **Car**.  
+- **Train:** Often misclassified as **Bus, Traffic Sign,** or **Car**, likely due to very few training samples.  
+- **Motor, Bike, and Rider:** High confusion among these three classes due to similar features and small sample sizes.
 
 ### Detection Metrics by Class
 | Class           | Images | Instances | Box(P) | R    | mAP50 | mAP50-95 |
