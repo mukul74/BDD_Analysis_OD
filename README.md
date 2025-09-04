@@ -631,13 +631,36 @@ This dataset allows for detailed comparison and helps pinpoint conditions that r
 
 ## Comments/Analysis
 
-The images represent scenarios where **some samples fail to detect objects** in the frame.  
+## Analysis of Missed Detections Across Conditions
 
-- Total we have 97 combinations from the dataset
-across **weather** + **scene** + **time**, please refer to the 
-**runs\compare_preds_gt\metrics_by_condition.csv**, here I have also added the precision, recall and F1 values for 50 images each.
+The images represent **scenarios where the model fails to detect certain objects in the frame**.  
 
-- They provide an **overview of the variety of scenes** in the dataset.  
-- For each scenario, up to **50 images** have been saved for observation and analysis.  
-- Few objects are missed by the model as we can see in the **Snow Residential Night** or **Snow Highway Night** images.
+In total, there are **97 unique combinations** of conditions derived from the dataset across **weather, scene, and time-of-day** factors.  
+Please refer to the file:  
+`runs/compare_preds_gt/metrics_by_condition.csv`  
+
+This file includes **precision, recall, and F1-score** values computed over **50 sampled images per condition**.  
+
+---
+
+### Dataset Coverage
+- **97 condition combinations** (weather × scene × time-of-day).  
+- **50 representative images** saved for each condition.  
+- Provides an overview of the **diverse contexts** captured in the dataset.  
+
+---
+
+### Observations from Failure Cases
+- **Snowy Residential (Night)** → multiple objects missed due to **low visibility** and **occlusion**.  
+- **Snowy Highway (Night)** → frequent failures in detecting **small or distant objects**.  
+- **Rainy City Street (Night)** → reflections and motion blur cause missed detections for **pedestrians and traffic signs**.  
+
+---
+
+### Insights
+These examples highlight that the model:  
+- Performs reasonably well in **clear daytime** conditions.  
+- Struggles significantly in **adverse weather** and **low-light scenarios**.  
+- Requires stronger **data augmentation** and **domain adaptation techniques** to improve robustness 
+
 
