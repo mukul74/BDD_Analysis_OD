@@ -8,7 +8,7 @@ This repository contains code and resources for analyzing the **BDD100K dataset*
 
 # 1. Data Analysis of BDD100K 
 
-### To run the data analysis section via Docker Container
+### 1.1 To run the data analysis section via Docker Container
 <pre> docker pull mukulagarwal/data_analysis:latest  </pre>
 <pre> docker run -it --rm mukulagarwal/data_analysis:latest </pre> 
 
@@ -30,7 +30,7 @@ These metadata files provide object annotations (bounding boxes, categories, att
 
 ---
 
-### Codebase
+### 1.2 Codebase
 
 The following Python scripts are used in this data analysis:
 
@@ -68,7 +68,7 @@ utilities.py will be called inside the DataAnalysis.py
 - `BadData/val/` – Folders generated during execution for the **validation set**, contains images with anomalies.  
 ---
 
-### Main Criteria
+### 1.3 Main Criteria
 
 The analysis covers dataset-level statistics, including:
 
@@ -89,7 +89,7 @@ The analysis covers dataset-level statistics, including:
 
 ---
 
-### Example Visualizations
+### 1.4 Example Visualizations
 
 Images showing different scenes with ground-truth bounding boxes:
 
