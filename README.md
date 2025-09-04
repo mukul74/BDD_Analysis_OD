@@ -37,7 +37,22 @@ The following Python scripts are used in this data analysis:
 - `DataAnalysis.py` – main script for reading and analyzing the dataset.  
 - `utilities.py` – helper functions for data parsing and statistics extraction.  
 
-<pre> python DataAnalysis.py
+<pre> 
+##Setup Virtual Environment
+
+# Create virtual environment
+python -m venv venv
+
+# Activate the environment
+# On Linux/Mac:
+source venv/bin/activate
+# On Windows (PowerShell):
+venv\Scripts\Activate
+
+# Install dependencies
+pip install -r requirements_2.txt
+
+python DataAnalysis.py
 '''
 utilities.py will be called inside the DataAnalysis.py
 '''
@@ -90,13 +105,7 @@ Images showing different scenes with ground-truth bounding boxes:
 
 ### Comments/Analysis
 
-1. The grid of images shows a variety of scenarios in both the **Train** and **Validation** sets, including:  
-   - **Highway**  
-   - **Urban**  
-   - **Night**  
-   - **Snow**  
-   - **Vehicles**  
-   - **Traffic Lights**
+The grid of images highlights diverse driving scenarios sampled from both the Train and Validation sets, encompassing **highways**, **urban streets**, **nighttime** conditions, and adverse environments such as **snow**. Objects of interest, including **vehicles**, **pedestrians**, and **traffic lights**, are consistently annotated with bounding boxes across scenes of varying illumination, traffic density, and contextual complexity. This diversity reflects real-world heterogeneity, making the dataset highly valuable for evaluating the robustness and generalizability of object detection models in autonomous driving research.
 
 
 # 2. Statistics 
