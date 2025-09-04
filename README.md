@@ -4,7 +4,7 @@
 This repository contains code and resources for analyzing the **BDD100K dataset**, one of the largest and most diverse open driving datasets. The focus is on object detection tasks, with an emphasis on understanding dataset composition, annotation quality, and category-level insights that can inform model training and evaluation.
 
 ---
-
+**All relevant folders and code used in the analysis have been included in this repository.**
 
 # 1. Data Analysis of BDD100K 
 
