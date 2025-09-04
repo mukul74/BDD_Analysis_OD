@@ -420,7 +420,9 @@ def generate_bbox_summary(train_bboxes, val_bboxes, summary_folder="plots/summar
 
 
 def run_dataset_analysis(name, dataset, img_root, excluded, out_folder):
-    """ """
+    """
+     
+    """
 
     print(f"\n--- {name} Data Analysis ---")
     stats = generate_stats(dataset, excluded)
@@ -510,7 +512,7 @@ def visualize_bad_bboxes(bad_df, img_dir, out_dir, num_samples=100):
         out_path = os.path.join(out_dir, f"{idx}_{os.path.basename(img_name)}")
         plt.imsave(out_path, img)
 
-    print(f"✅ Saved {min(num_samples, len(bad_df))} bad bbox samples to {out_dir}")
+    print(f"Saved {min(num_samples, len(bad_df))} bad bbox samples to {out_dir}")
 
 
 def compute_iou(b1, b2):

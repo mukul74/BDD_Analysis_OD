@@ -682,3 +682,5 @@ These examples highlight that the model:
 - Requires stronger **data augmentation** and **domain adaptation techniques** to improve robustness 
 
 
+### Closing Remarks  
+This repository provides a comprehensive exploration of the **BDD100K dataset**, covering dataset analysis, annotation quality checks, object detection training, and performance evaluation under diverse driving conditions. By combining detailed statistics with YOLOv11n fine-tuning experiments, the project highlights both the strengths and limitations of the dataset and models when applied to real-world autonomous driving scenarios. The results and visualizations aim to serve as a valuable reference for researchers and practitioners working on **robust object detection in complex, heterogeneous environments**.  
