@@ -572,6 +572,8 @@ The following Python scripts are used in this analysis:
   - `runs/detect/val/` – Contains plots related to **Precision, Recall, and F1 Score**.
 # 4. Model Evaluation on Validation Set Across Different Scenarios
 
+Apart from the object detections overview, I tried to look for scenes where the detections failed or what were combinations, what models was looking in to. For example Snow+Night+Highway, could be a possible scenerio, with less detections.
+
 This analysis examines the model's performance under various **environmental scenarios**, defined as combinations of:
 
 - **Weather**
@@ -615,9 +617,25 @@ This dataset allows for detailed comparison and helps pinpoint conditions that r
   <sub><b>Snowy City_Street Night</b></sub>
 </p>
 
+<p float="left" align="center">
+  <figure>
+    <img src="runs\compare_preds_gt\BarPLot.png" width="45%" />
+    <figcaption>Variation of Precision Recall and F1 across most occuring scenerios</figcaption>
+  </figure>
+  <figure>
+    <img src="runs\compare_preds_gt\BarPlot_2.png" width="45%" />
+    <figcaption>No. of images across most occuring scenerios</figcaption>
+  </figure>
+</p>
+
+
 ## Comments/Analysis
 
 The images represent scenarios where **some samples fail to detect objects** in the frame.  
+
+- Total we have 97 combinations from the dataset
+across **weather** + **scene** + **time**, please refer to the 
+**runs\compare_preds_gt\metrics_by_condition.csv**, here I have also added the precision, recall and F1 values for 50 images each.
 
 - They provide an **overview of the variety of scenes** in the dataset.  
 - For each scenario, up to **50 images** have been saved for observation and analysis.  
