@@ -8,13 +8,16 @@ This repository contains code and resources for analyzing the **BDD100K dataset*
 
 # 1. Data Analysis of BDD100K 
 
-### To get the analysis via Docker Container
+### To run the data analysis section via Docker Container
 <pre> docker pull mukulagarwal/data_analysis:latest  </pre>
 <pre> docker run -it --rm mukulagarwal/data_analysis:latest </pre> 
 
+### Expected Output
+This will generate the statistics related to the datasets, in form of tables, which will be displayed in the console window, and will also save the csv files and plots for Train and Val datasets. **Please refer to the Codebase Section for the details**
+
 
 The analysis is based on the following dataset components:
-The fodler mentioned below, were downloaded from the provided link.
+The folders mentioned below, were downloaded from the provided link in the assignment.
 ### Image Data
 - `bdd100k_images_100k/100k/train/`  
 - `bdd100k_images_100k/100k/val/`  
@@ -23,23 +26,29 @@ The fodler mentioned below, were downloaded from the provided link.
 - `bdd100k_labels_release/bdd100k_labels_images_train.json`  
 - `bdd100k_labels_release/bdd100k_labels_images_val.json`  
 
-These metadata files provide object annotations (bounding boxes, categories, attributes) corresponding to each image in the dataset.
+These metadata files provide object annotations (bounding boxes, categories, attributes) corresponding to each image in the dataset. This dataset contains a lot of other sections also related to Segmentation, and other detaisl, but our focus is only on **Object Detection**
 
 ---
 
 ### Codebase
 
-The following Python scripts are used in this analysis:
+The following Python scripts are used in this data analysis:
 
 - `DataAnalysis.py` – main script for reading and analyzing the dataset.  
 - `utilities.py` – helper functions for data parsing and statistics extraction.  
 
+<pre> python DataAnalysis.py
+'''
+utilities.py will be called inside the DataAnalysis.py
+'''
+</pre>
+
 ### Output Folders
 
 - `plots/random_grids/` – Random images from **Train** and **Validation** sets with Ground Truth (GT) bounding boxes.  
-- `plots/summaries/` – CSV summaries generated from the above function calls.  
-- `plots/train/` – Plots generated during execution for the **training set**.  
-- `plots/val/` – Plots generated during execution for the **validation set**.
+- `plots/summaries/` – CSV summaries generated from the above function call for different scenrios mentioned below.  
+- `plots/train/` – Plots generated during execution for the **training set** on the mentioned criterias below.  
+- `plots/val/` – Plots generated during execution for the **validation set** on the mentioend criteria below.
 - `BadData/train/` – Fodlers generated during execution for the **training set**, contains images with anamolies.
 - `BadData/val/` – Folders generated during execution for the **validation set**, contains images with anamolies.  
 ---
@@ -55,6 +64,8 @@ The analysis covers dataset-level statistics, including:
 - **Occlusion** frequencies  
 - **Truncation** frequencies  
 - **Number of objects per image**  
+- **Boundig Box**  Statistics
+- **Bad Bounding Box** Statistics
 
 **No. of Images in the Train Folder:**  
 - **Train images:** 69,863  
