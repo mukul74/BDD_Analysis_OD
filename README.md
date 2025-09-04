@@ -47,13 +47,13 @@ utilities.py will be called inside the DataAnalysis.py
 
 - `plots/random_grids/` – Random images from **Train** and **Validation** sets with Ground Truth (GT) bounding boxes.  
 - `plots/summaries/` – CSV summaries generated from the above function call for different scenrios mentioned below.  
-- `plots/train/` – Plots generated during execution for the **training set** on the mentioned criterias below.  
+- `plots/train/` – Plots generated during execution for the **training set** on the mentioned criteria below.  
 - `plots/val/` – Plots generated during execution for the **validation set** on the mentioend criteria below.
-- `BadData/train/` – Fodlers generated during execution for the **training set**, contains images with anamolies.
-- `BadData/val/` – Folders generated during execution for the **validation set**, contains images with anamolies.  
+- `BadData/train/` – Folder generated during execution for the **training set**, contains images with anomalies.
+- `BadData/val/` – Folders generated during execution for the **validation set**, contains images with anomalies.  
 ---
 
-### Main Criterias
+### Main Criteria
 
 The analysis covers dataset-level statistics, including:
 
