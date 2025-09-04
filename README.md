@@ -470,7 +470,6 @@ model.train(
 
 ## Evalaution Metrics
 
-### CodeBase
 # Run YOLO Inference & Evaluation Scripts
 
 ```bash
